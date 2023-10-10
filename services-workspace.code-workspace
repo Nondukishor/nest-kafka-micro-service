@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "services-workspace"
+		},
+		{
+			"path": "api-gateway"
+		},
+		{
+			"path": "auth-service"
+		},
+		{
+			"path": "pgdata"
+		}
+	],
+	"settings": {}
+}
