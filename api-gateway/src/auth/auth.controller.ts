@@ -26,8 +26,8 @@ export class AuthController {
   }
 
   @Post('reset-password')
-  resetPassword(@Body(ValidationPipe) createUserDto: ResetPasswordDto) {
-    return this.authService.resetPassword(createUserDto);
+  resetPassword(@Body(ValidationPipe) resetPassword: ResetPasswordDto) {
+    return this.authService.resetPassword(resetPassword);
   }
 
   @Post('logout')
