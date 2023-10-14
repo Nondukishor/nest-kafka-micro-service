@@ -9,6 +9,7 @@ export class AppService {
 
   createUser(data: CreateUserDto): void {
     this.usersRepository.save(data);
+    console.log('data', { name: 'abul' });
   }
 
   getUser(id: number): User {

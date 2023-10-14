@@ -19,7 +19,6 @@ services:
       - broker
     networks:
       - microservice-networks
-
   broker:
     image: confluentinc/cp-kafka:7.0.1
     container_name: broker
@@ -39,7 +38,6 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKAJS_NO_PARTITIONER_WARNING: 1
-      
       KAFKA_BROKER: broker:29092
     networks:
       - microservice-networks
@@ -48,6 +46,10 @@ services:
     build: ./auth-service
     ports:
       - 3000:3000
+    depends_on:
+      - auth-database
+      - api-gateway
+      - broker
     networks:
       - microservice-networks
   api-gateway:
@@ -65,8 +67,9 @@ services:
       - 8080:8080
     networks:
       - microservice-networks
-  
+
   auth-database:
+    hostname: auth-database
     container_name: auth-database
     image: postgres:16-alpine
     restart: always
@@ -84,7 +87,5 @@ networks:
   microservice-networks:
     driver: bridge
 volumes:
-    pgdata:
-      driver: local
-
-
+  pgdata:
+    driver: local
